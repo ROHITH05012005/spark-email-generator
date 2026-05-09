@@ -27,7 +27,7 @@ class EmailRequest(BaseModel):
     recipient_role: str
     tone: str = "professional"
 
-@app.post("/generate")
+@app.post("/api/generate")
 async def generate_email(request: EmailRequest):
     try:
         prompt = f"""
@@ -64,7 +64,7 @@ async def generate_email(request: EmailRequest):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-@app.get("/health")
+@app.get("/api/health")
 async def health():
     return {"status": "ok"}
 
